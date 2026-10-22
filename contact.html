@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Contact</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 400px; margin: 40px auto; }
+        input, textarea, button { display: block; width: 100%; margin: 8px 0; padding: 8px; box-sizing: border-box; }
+        .error { color: #c00; }
+        .success { color: #080; }
+    </style>
+</head>
+<body>
+    <h1>Contact Us</h1>
+    <form id="contact">
+        <input id="name" type="text" placeholder="Name">
+        <input id="email" type="email" placeholder="Email">
+        <textarea id="message" rows="4" placeholder="Message"></textarea>
+        <button type="submit">Send</button>
+    </form>
+    <p id="result"></p>
+
+    <script>
+        document.getElementById("contact").addEventListener("submit", function (e) {
+            e.preventDefault();
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const message = document.getElementById("message").value.trim();
+            const result = document.getElementById("result");
+
+            if (!name || !email || !message) {
+                result.className = "error";
+                result.textContent = "Please fill in every field.";
+            } else if (!email.includes("@")) {
+                result.className = "error";
+                result.textContent = "Please enter a valid email.";
+            } else {
+                result.className = "success";
+                result.textContent = "Thanks, " + name + "! Message received.";
+            }
+        });
+    </script>
+</body>
+</html>
